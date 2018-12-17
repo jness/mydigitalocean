@@ -11,17 +11,17 @@ terraform init
 ## Validate configuration
 
 ```
-TF_VAR_digitalocean_token="xxxxx" terraform validate
+DIGITALOCEAN_TOKEN="xxxxx" terraform validate
 ```
 
 ## Plan changes
 
 ```
-TF_VAR_digitalocean_token="xxxxx" terraform plan
+DIGITALOCEAN_TOKEN="xxxxx" terraform plan
 ```
 
 ## Apply changes
 
 ```
-TF_VAR_digitalocean_token="xxxxx" terraform apply
+DIGITALOCEAN_TOKEN="xxxxx" terraform apply
 ```

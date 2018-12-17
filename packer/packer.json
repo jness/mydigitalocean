@@ -12,6 +12,10 @@
     {
       "type": "shell",
       "script": "scripts/bootstrap.sh"
+    },
+    {
+      "type": "ansible-local",
+      "playbook_file": "ansible/local.yml"
     }
   ]
 }
