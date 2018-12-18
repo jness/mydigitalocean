@@ -1,15 +1,10 @@
 # Digital Ocean Packer
 
-An example **packer** digitalocean builder
+Use **packer** to build digitalocean base images
 
-## Test provision scripts locally using docker
 
-```
-docker build . -t packer
-```
-
-## Build provisioned snapshot on digitalocean
+## Build web base image
 
 ```
-DIGITALOCEAN_API_TOKEN="xxxxx" packer build packer.json
+DIGITALOCEAN_API_TOKEN="xxxxx" packer build web.json
 ```

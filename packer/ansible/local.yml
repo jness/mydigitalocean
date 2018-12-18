@@ -1,9 +1,0 @@
----
-- name: Provisioning local machine
-  hosts: localhost
-  gather_facts: false
-
-  tasks:
-  - name: Install the package "nginx"
-    apt:
-      name: nginx

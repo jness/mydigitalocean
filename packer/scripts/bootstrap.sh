@@ -7,19 +7,23 @@ echo "-------------------"
 echo " Updating ubuntu..."
 echo "-------------------"
 apt-get update
-apt-get -y upgrade
+apt-get --yes upgrade
 
 # install dependencies
-echo "---------------------------"
-echo " Installing dependencies..."
-echo "---------------------------"
-apt-get -y install \
+echo "-----------------------"
+echo " Installing packages..."
+echo "-----------------------"
+apt-get --yes install \
   curl \
   wget \
-  vim
+  vim \
+  git \
+  software-properties-common
 
-# install ansible
+# install dependencies
 echo "----------------------"
 echo " Installing ansible..."
 echo "----------------------"
-apt-get -y install ansible
+apt-add-repository --yes --update ppa:ansible/ansible
+apt-get update
+apt-get --yes install ansible

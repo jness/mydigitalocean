@@ -1,15 +1,15 @@
-variable "base_image" {}
+variable "web_base_image" {}
 
-data "digitalocean_image" "base_image" {
-  name = "${var.base_image}"
+data "digitalocean_image" "web_base_image" {
+  name = "${var.web_base_image}"
 }
 
 # create a new droplet in the nyc2 region
 resource "digitalocean_droplet" "web" {
-  image  = "${data.digitalocean_image.base_image.image}"
+  image  = "${data.digitalocean_image.web_base_image.image}"
   name   = "web-01"
   region = "nyc3"
-  size   = "s-1vcpu-1gb"
+  size   = "512mb"
 
   lifecycle {
     create_before_destroy = true

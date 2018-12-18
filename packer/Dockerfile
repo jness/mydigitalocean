@@ -4,4 +4,4 @@ ADD ./scripts scripts
 ADD ./ansible ansible
 
 RUN scripts/bootstrap.sh
-RUN ansible-playbook ansible/local.yml
+RUN ansible-playbook ansible/web.yml --diff
