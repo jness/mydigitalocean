@@ -1,7 +1,7 @@
 # create new zone file for domain
 resource "digitalocean_domain" "default" {
   name = "example-nessy.info"
-  ip_address = "${digitalocean_droplet.web.ipv4_address}"
+  ip_address = "${digitalocean_loadbalancer.public.ip}"
 }
 
 # create A records
