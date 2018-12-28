@@ -1,3 +1,6 @@
+#####
+## Provision loadbalancer for web droplets
+#####
 
 resource "digitalocean_loadbalancer" "public" {
   name = "loadbalancer-1"
