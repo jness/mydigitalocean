@@ -1,13 +1,10 @@
-
 server {
 	listen 80 default_server;
 	listen [::]:80 default_server;
 
-	root /var/www/wordpress;
+	root /var/www/html;
 
 	index index.php index.html;
-
-	server_name example-nessy.info;
 
 	location / {
 		# First attempt to serve request as file, then

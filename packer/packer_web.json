@@ -1,0 +1,31 @@
+{
+  "variables": {
+    "version": "none"
+  },
+  "builders": [
+    {
+      "snapshot_name": "web_base_image_{{user `version`}}",
+      "type": "digitalocean",
+      "image": "ubuntu-16-04-x64",
+      "region": "nyc3",
+      "size": "s-1vcpu-1gb",
+      "ssh_username": "root"
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "script": "scripts/setup.sh"
+    },
+    {
+      "type": "salt-masterless",
+      "local_state_tree": "../salt",
+      "skip_bootstrap": true,
+      "minion_config": "../salt/_minions/packer_web"
+    },
+    {
+      "type": "shell",
+      "script": "scripts/cleanup.sh"
+    }
+  ]
+}
