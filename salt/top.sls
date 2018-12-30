@@ -12,6 +12,7 @@ base:
     - python
     - simple_app
 
-  # execute configuration states only during terraform deployments.
-  # 'web_config':
-  #   - nginx.config
+  # execute configuration states only during terraform deployments,
+  # we don't want to keep secrets in our base images
+  'web_config':
+    - simple_app.config

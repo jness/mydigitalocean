@@ -23,6 +23,7 @@ simple_app_requirements:
 simple_app_install:
   virtualenv.managed:
     - name: /var/www/simple_app/venv/
+    - user: simple_app
     - python: /usr/bin/python3
     - requirements: /var/www/simple_app/requirements.txt
 
