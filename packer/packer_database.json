@@ -21,7 +21,7 @@
       "type": "salt-masterless",
       "local_state_tree": "../salt",
       "skip_bootstrap": true,
-      "minion_config": "../salt/_minions/packer_database"
+      "minion_config": "../salt/_minions/web_config"
     },
     {
       "type": "shell",

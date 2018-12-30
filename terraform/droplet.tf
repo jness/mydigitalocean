@@ -41,6 +41,16 @@ resource "digitalocean_droplet" "web" {
     }
   }
 
+  provisioner "remote-exec" {
+    script              = "../packer/scripts/remove.sh"
+
+    connection {
+      type              = "ssh"
+      user              = "root"
+      private_key       = "${file("~/.ssh/digitalocean")}"
+    }
+  }
+
 }
 
 resource "digitalocean_droplet" "db" {
@@ -74,6 +84,16 @@ resource "digitalocean_droplet" "db" {
 
   provisioner "remote-exec" {
     script              = "../packer/scripts/cleanup.sh"
+
+    connection {
+      type              = "ssh"
+      user              = "root"
+      private_key       = "${file("~/.ssh/digitalocean")}"
+    }
+  }
+
+  provisioner "remote-exec" {
+    script              = "../packer/scripts/remove.sh"
 
     connection {
       type              = "ssh"
