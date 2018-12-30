@@ -6,7 +6,8 @@ echo "Executing $0"
 echo "---------------"
 echo " Remove salt..."
 echo "---------------"
-apt-get --yes remove \
+apt-get --yes --purge remove \
+  salt-common \
   salt-master \
   salt-minion \
   salt-ssh \

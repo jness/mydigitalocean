@@ -28,6 +28,7 @@ echo " Install salt..."
 echo "----------------"
 apt-get update
 apt-get --yes install \
+  salt-common \
   salt-master \
   salt-minion \
   salt-ssh \
