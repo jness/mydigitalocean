@@ -3,6 +3,5 @@
 #####
 
 variable "web_base_image" {}
-variable "database_base_image" {}
 
 variable "digitalocean_ssh_key_name" {}

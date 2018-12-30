@@ -16,7 +16,3 @@ base:
   'web_config':
     - nginx.config
     - dungeon_brawl.config
-
-  # 'database_build':
-  #
-  # 'database_config':

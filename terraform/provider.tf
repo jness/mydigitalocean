@@ -15,7 +15,3 @@ data "digitalocean_ssh_key" "digitalocean_ssh_key_name" {
 data "digitalocean_image" "web_base_image" {
   name = "${var.web_base_image}"
 }
-
-data "digitalocean_image" "database_base_image" {
-  name = "${var.database_base_image}"
-}
