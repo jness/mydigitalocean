@@ -21,6 +21,11 @@ Vagrant.configure("2") do |config|
     web.vm.provision "shell", name: "Create /srv/salt", inline: "mkdir -p /srv/salt"
     web.vm.provision "shell", name: "Copy /vagrant/salt to /srv/salt", inline: "cp -a /vagrant/salt /srv/"
 
+    ## for salt masterless, copy our mounted pillar directory to /srv/pillar
+    web.vm.provision "shell", name: "Remove /srv/pillar", inline: "rm -rf /srv/pillar"
+    web.vm.provision "shell", name: "Create /srv/pillar", inline: "mkdir -p /srv/pillar"
+    web.vm.provision "shell", name: "Copy /vagrant/pillar to /srv/pillar", inline: "cp -a /vagrant/pillar /srv/"
+
     ## run salt provision
     web.vm.provision :salt do |salt|
       salt.minion_id  = "web_config"

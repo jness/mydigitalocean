@@ -5,5 +5,6 @@ simple_app_configuration:
     - user: simple_app
     - group: root
     - mode: 660
+    - template: jinja
     - watch_in:
       - service: simple_app_service

@@ -1,1 +1,1 @@
-secret: super-secret-key
+secret: {{ pillar['simple_app']['secret'] }}
