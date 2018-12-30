@@ -10,9 +10,8 @@ base:
   'web_build or web_config':
     - nginx
     - python
-    - dungeon_brawl
+    - simple_app
 
   # execute configuration states only during terraform deployments.
-  'web_config':
-    - nginx.config
-    - dungeon_brawl.config
+  # 'web_config':
+  #   - nginx.config
