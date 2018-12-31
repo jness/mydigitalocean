@@ -10,9 +10,9 @@ base:
   'web_build or web_config':
     - nginx
     - python
-    - simple_app
+    - apps
 
   # execute configuration states only during terraform deployments,
   # we don't want to keep secrets in our base images
   'web_config':
-    - simple_app.config
+    - apps.config

@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def hello():
-    with open('config.yml') as f:
+    with open('config.json') as f:
         return f.read()
 
 if __name__ == "__main__":

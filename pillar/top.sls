@@ -1,4 +1,7 @@
 base:
 
+  'web_build or web_config':
+    - apps
+
   'web_config':
-    - simple_app
+    - apps.config
