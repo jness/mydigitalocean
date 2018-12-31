@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
     web.vm.network "private_network", ip: "192.168.33.10"
 
     ## execute setup provision script
-    web.vm.provision "shell", path: "packer/scripts/setup.sh"
+    web.vm.provision "shell", path: "scripts/setup.sh"
 
     ## for salt masterless, copy our mounted salt directory to /srv/salt
     web.vm.provision "shell", name: "Remove /srv/salt", inline: "rm -rf /srv/salt"
@@ -25,6 +25,11 @@ Vagrant.configure("2") do |config|
     web.vm.provision "shell", name: "Remove /srv/pillar", inline: "rm -rf /srv/pillar"
     web.vm.provision "shell", name: "Create /srv/pillar", inline: "mkdir -p /srv/pillar"
     web.vm.provision "shell", name: "Copy /vagrant/pillar to /srv/pillar", inline: "cp -a /vagrant/pillar /srv/"
+
+    ## copy gpg keys into salt path
+    web.vm.provision "shell", name: "Create /etc/salt/gpgkeys", inline: "mkdir -p /etc/salt/gpgkeys && chmod 0700 /etc/salt/gpgkeys"
+    web.vm.provision "shell", name: "Copy /gpgkeys/pubring.gpg", inline: "cp /vagrant/gpgkeys/pubring.gpg /etc/salt/gpgkeys/pubring.gpg && chmod 600 /etc/salt/gpgkeys/pubring.gpg"
+    web.vm.provision "shell", name: "Copy /gpgkeys/secring.gpg", inline: "cp /vagrant/gpgkeys/secring.gpg /etc/salt/gpgkeys/secring.gpg && chmod 600 /etc/salt/gpgkeys/secring.gpg"
 
     ## run salt provision
     web.vm.provision :salt do |salt|
@@ -39,8 +44,8 @@ Vagrant.configure("2") do |config|
     end
 
     ## execute cleanup and remove scripts
-    web.vm.provision "shell", path: "packer/scripts/cleanup.sh"
-    web.vm.provision "shell", path: "packer/scripts/remove.sh"
+    web.vm.provision "shell", path: "scripts/cleanup.sh"
+    web.vm.provision "shell", path: "scripts/remove.sh"
   end
 
 end

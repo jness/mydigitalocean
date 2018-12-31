@@ -2,3 +2,8 @@
 .terraform
 .vagrant
 *.log
+
+# keep our gpg keys out of version control
+gpgkeys/*.gpg
+gpgkeys/*.gpg*
+gpgkeys/random_seed

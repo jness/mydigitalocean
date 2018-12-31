@@ -14,6 +14,7 @@ echo " Installing dependencies..."
 echo "---------------------------"
 apt-get --yes install \
   git \
+  gnupg \
   vim \
   wget
 

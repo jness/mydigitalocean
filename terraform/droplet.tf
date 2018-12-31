@@ -16,6 +16,66 @@ resource "digitalocean_droplet" "web" {
     create_before_destroy = true
   }
 
+  #####
+  ## Set proper permissions on gpg keys
+  #####
+
+  provisioner "remote-exec" {
+    inline              = "mkdir -p /etc/salt/gpgkeys && chmod 0700 /etc/salt/gpgkeys"
+
+    connection {
+      type              = "ssh"
+      user              = "root"
+      private_key       = "${file("~/.ssh/digitalocean")}"
+    }
+  }
+
+  #####
+  ## Sync gpg keys to droplet
+  #####
+
+  provisioner "file" {
+    source      = "../gpgkeys/secring.gpg"
+    destination = "/etc/salt/gpgkeys/secring.gpg"
+
+    connection {
+      type              = "ssh"
+      user              = "root"
+      private_key       = "${file("~/.ssh/digitalocean")}"
+    }
+
+  }
+
+  provisioner "file" {
+    source      = "../gpgkeys/pubring.gpg"
+    destination = "/etc/salt/gpgkeys/pubring.gpg"
+
+    connection {
+      type              = "ssh"
+      user              = "root"
+      private_key       = "${file("~/.ssh/digitalocean")}"
+    }
+
+  }
+
+  #####
+  ## Set proper permissions on gpg keys
+  #####
+
+  provisioner "remote-exec" {
+    inline              = "chmod 600 /etc/salt/gpgkeys/*"
+
+    connection {
+      type              = "ssh"
+      user              = "root"
+      private_key       = "${file("~/.ssh/digitalocean")}"
+    }
+  }
+
+  #####
+  ## Run salt-masterless provisioner
+  #####
+
   provisioner "salt-masterless" {
     local_state_tree    = "../salt"
     local_pillar_roots  = "../pillar"
@@ -32,8 +92,12 @@ resource "digitalocean_droplet" "web" {
     }
   }
 
+  #####
+  ## Run post provision scripts
+  #####
+
   provisioner "remote-exec" {
-    script              = "../packer/scripts/cleanup.sh"
+    script              = "../scripts/cleanup.sh"
 
     connection {
       type              = "ssh"
@@ -43,7 +107,7 @@ resource "digitalocean_droplet" "web" {
   }
 
   provisioner "remote-exec" {
-    script              = "../packer/scripts/remove.sh"
+    script              = "../scripts/remove.sh"
 
     connection {
       type              = "ssh"
