@@ -7,7 +7,7 @@ resource "digitalocean_droplet" "web" {
   image                 = "${data.digitalocean_image.web_base_image.image}"
   name                  = "web-${count.index}"
   region                = "nyc3"
-  size                  = "s-1vcpu-2gb"
+  size                  = "s-1vcpu-1gb"
   private_networking    = "true"
   ssh_keys              = ["${data.digitalocean_ssh_key.digitalocean_ssh_key_name.id}"]
   tags                  = ["web"]

@@ -3,8 +3,8 @@ Vagrant.configure("2") do |config|
 
   ## web virtual machine cpu/memory settings
   config.vm.provider "virtualbox" do |v|
-    v.memory = 2048
-    v.cpus = 2
+    v.memory = 1024
+    v.cpus = 1
   end
 
   ## web virtual machine settings
