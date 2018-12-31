@@ -14,30 +14,21 @@
       - mode: 755
       - makedirs: True
 
-  {{ app }}_requirements:
-    file.managed:
-      - name: /var/www/{{ app }}/requirements.txt
-      - source: salt://apps/files/requirements.txt
+  {{ app }}_source:
+    git.cloned:
+      - name: {{ config.repo }}
+      - branch: {{ config.branch }}
+      - target: /var/www/{{ app }}/repo/
       - user: {{ app }}
-      - group: root
-      - mode: 644
+      - watch_in:
+        - service: {{ app }}_service
 
   {{ app }}_install:
     virtualenv.managed:
       - name: /var/www/{{ app }}/venv/
       - user: {{ app }}
       - python: /usr/bin/python3
-      - requirements: /var/www/{{ app }}/requirements.txt
-
-  {{ app }}:
-    file.managed:
-      - name: /var/www/{{ app }}/app.py
-      - source: salt://apps/files/app.py
-      - user: {{ app }}
-      - group: root
-      - mode: 644
-      - watch_in:
-        - service: {{ app }}_service
+      - requirements: /var/www/{{ app }}/repo/requirements.txt
 
   {{ app }}_wsgi:
     file.managed:

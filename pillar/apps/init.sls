@@ -1,9 +1,11 @@
 apps:
 
   simple_app:
-    server_name: example-nessy.info
-    workers: 2
 
-  simple_app2:
-    server_name: another.example-nessy.info
+    # git repo details
+    repo: https://github.com/jness/simple_app.git
+    branch: master
+
+    # nginx and gunicorn details
+    server_name: app1.example-nessy.info
     workers: 2
