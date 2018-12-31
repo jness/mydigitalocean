@@ -17,7 +17,7 @@ resource "digitalocean_droplet" "web" {
   }
 
   #####
-  ## Set proper permissions on gpg keys
+  ## Create gpg directory
   #####
 
   provisioner "remote-exec" {
